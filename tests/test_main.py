@@ -4,7 +4,7 @@ from processing.main import main_func
 
 
 class MainTest(unittest.TestCase):
-    def test(self):
+    def test_main_func(self):
         self.assertEqual(main_func('hello'), 'olleh')
 
 
