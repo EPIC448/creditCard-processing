@@ -1,25 +1,13 @@
-import sys, csv
-
-
-def main_func(string):
-    return string[::-1]
-
-
-def get_content():
-    try:
-        # Open content from file passed as arg
-        file_name = sys.argv[1]
-        with open(file_name) as f:
-            content = f.read()
-
-    except IndexError:
-        # Pass content in STDIN
-        content = sys.stdin.read()
-
-    return content
+from utils.collection import CreditRecordsCollection
+from utils.data import get_data, format_data
 
 
 if __name__ == '__main__':
 
-    content = get_content()
+    data = get_data()
+    accounts, transactions = format_data(data=data)
 
+    credit_data = CreditRecordsCollection(accounts=accounts)
+    credit_data.process(transactions=transactions)
+
+    print(credit_data)

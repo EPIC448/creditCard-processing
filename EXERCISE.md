@@ -74,7 +74,3 @@ In addition to your code and tests, please also include a README that explains:
 - How to run your code and tests, including how to install any dependencies
   your code may have.
 
-Thank you!
-
-**Note: this information is confidential. It is prohibited to share, post online
-or otherwise publicize without Braintree's prior written consent.**
