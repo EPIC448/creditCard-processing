@@ -3,17 +3,17 @@ import sys
 
 from utils.luhn import is_luhn_valid
 
-Accounts = namedtuple('Accounts',
-                      ['name',
-                       'account_number',
-                       'limit',
-                       'amount',
-                       'verified'])
+Account = namedtuple('Accounts',
+                     ['name',
+                      'account_number',
+                      'limit',
+                      'amount',
+                      'verified'])
 
-Transactions = namedtuple('Transactions',
-                          ['type',
-                           'name',
-                           'amount'])
+Transaction = namedtuple('Transactions',
+                         ['type',
+                          'name',
+                          'amount'])
 
 
 def get_data():
@@ -37,7 +37,7 @@ def format_data(data,
         line = line.split(' ')
 
         if line[0] == 'Add':
-            accounts.append(Accounts(
+            accounts.append(Account(
                 name=line[1],
                 account_number=line[2],
                 limit=int(line[3][1:]),
@@ -45,7 +45,7 @@ def format_data(data,
                 verified=is_luhn_valid(line[2])))
 
         else:
-            transactions.append(Transactions(
+            transactions.append(Transaction(
                 type=line[0],
                 name=line[1],
                 amount=int(line[2][1:])))

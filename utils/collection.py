@@ -22,16 +22,26 @@ class CreditRecordsCollection:
         )
 
     def charge(self, transaction):
-        if self.data[transaction.name]['amount'] + \
+        if not self.is_holder_verified(transaction.name):
+            self.data[transaction.name]['amount'] = 'error'
+
+        elif self.data[transaction.name]['amount'] + \
                 transaction.amount < \
                 self.data[transaction.name]['limit']:
 
             self.data[transaction.name]['amount'] += transaction.amount
         else:
-            pass
+            pass  # limit reached, don't charge account
 
     def credit(self, transaction):
-        self.data[transaction.name]['amount'] -= transaction.amount
+        if not self.is_holder_verified(transaction.name):
+            self.data[transaction.name]['amount'] = 'error'
+
+        else:
+            self.data[transaction.name]['amount'] -= transaction.amount
+
+    def is_holder_verified(self, name):
+        return self.data[name]['verified']
 
     def process(self, transactions):
         while transactions:
